@@ -1,0 +1,5 @@
+task oopify(prefix) -> prefix + "oop"
+print(oopify("something im boutta ") + "ify")
+task bingus(in1, in2) -> in1*in2
+print(bingus(12,2))
+print(bingus)
