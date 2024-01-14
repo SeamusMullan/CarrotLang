@@ -178,6 +178,13 @@ immutable prob: Chance = Chance(50)
 
 note the location of The Spire in Dublin using the GeoLocation type
 immutable theSpire: GeoLocation = GeoLocation(53.3498, 6.2603)
+
+explain{
+    a budget for a company using the Currency type
+    All currency types use the ISO code to represent a currency
+    see https://en.wikipedia.org/wiki/ISO_4217
+}
+immutable budget: Currency = Currency(1000000, EUR)
 ```
 
 - **Exclamation Marks**: All statements in CarrotLang end with an exclamation mark for emphasis and clarity.
