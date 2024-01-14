@@ -2,6 +2,8 @@
 
 Welcome to CarrotLang, a modern and intuitive programming language designed for clarity, simplicity, and power. CarrotLang brings together the best features of conventional programming while introducing innovative concepts to enhance developer experience.
 
+# Note: Not all these features are currently implemented and until this language has reaced that point, instruction to use and run code in CarrotLang will not be posted.
+
 ## Syntax Definitions
 
 ### 0. General Rules
