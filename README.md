@@ -3,6 +3,20 @@
 
 ## Syntax Definitions
 
+0. **General Rules**
+- CarrotLang doesn't care about indentation, but evvery line of code must only do one thing (for simplicity)
+For example this is some valid CarrotLang code
+```carrot
+immutable people = ["john", "mary"]
+print(people[0])
+```
+But this is not
+```carrot
+immutable people = ["john", "mary"] print(people[0])
+```
+
+
+
 1. **Readable Declarations**: Use clear and descriptive keywords for variable declarations to make the code more readable. For instance:
 - `immutable` for constants that cannot change.
 - `mutable` for variables that can change.
