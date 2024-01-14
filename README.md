@@ -158,18 +158,18 @@ forget about requirements[1]
 ## Additional Features in CarrotLang
 
 - **Types**: CarrotLang supports a variety of types for different purposes:
-- `Number` (Integers, Floats, Doubles)
-- `Boolean` (`yes` or `no`, case-insensitive)
-- `String` (treated as `Char` when length is 1)
-- `Nothing` (similar to `Null`)
-- `Chance` (percentage probability)
-- `Currency` (with on-the-fly conversion)
-- `VectorN` (N-dimensional vector)
-- `GridN` (N-dimensional square matrix)
-- `GridXY` (X rows, Y columns matrix)
-- `UID` (Unique identifier)
-- `Date` (Date in DD/MM/YYYY format)
-- `GeoLocation` (using Lat, Lng)
+  - `Number` (Integers, Floats, Doubles)
+  - `Boolean` (`yes` or `no`, case-insensitive)
+  - `String` (treated as `Char` when length is 1)
+  - `Nothing` (similar to `Null`)
+  - `Chance` (percentage probability)
+  - `Currency` (with on-the-fly conversion)
+  - `VectorN` (N-dimensional vector)
+  - `GridN` (N-dimensional square matrix)
+  - `GridXY` (X rows, Y columns matrix)
+  - `UID` (Unique identifier)
+  - `Date` (Date in DD/MM/YYYY format)
+  - `GeoLocation` (using Lat, Lng)
 
 All types in CarrotLang can be created as instances
 ```carrot
