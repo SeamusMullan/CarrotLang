@@ -199,6 +199,9 @@ class Lexer:
       elif self.current_char == '+':
         tokens.append(Token(TT_PLUS, pos_start=self.pos))
         self.advance()
+      elif self.current_char == '^':
+        tokens.append(Token(TT_POW, pos_start=self.pos))
+        self.advance()
       elif self.current_char == '-':
         tokens.append(self.make_minus_or_arrow())
       elif self.current_char == '*':
