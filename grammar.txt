@@ -1,59 +1,63 @@
 statements  : NEWLINE* statement (NEWLINE+ statement)* NEWLINE*
 
-statement		: KEYWORD:RETURN expr?
-						: KEYWORD:CONTINUE
-						: KEYWORD:BREAK
-						: expr
+statement		: 'immutable' IDENTIFIER EQ expr
+						| 'mutable' IDENTIFIER EQ expr
+						| 'when' expr 'then' statement ('but when' expr 'then' statement)* ('otherwise' statement)?
+						| 'task' IDENTIFIER? parameters 'returns'? type? statement
+						| expr
 
-expr        : KEYWORD:VAR IDENTIFIER EQ expr
-            : comp-expr ((KEYWORD:AND|KEYWORD:OR) comp-expr)*
+expr        : IDENTIFIER EQ expr
+            | comp-expr (('and'|'or') comp-expr)*
 
-comp-expr   : NOT comp-expr
-            : arith-expr ((EE|LT|GT|LTE|GTE) arith-expr)*
+comp-expr   : 'not' comp-expr
+            | arith-expr ((EE|LT|GT|LTE|GTE) arith-expr)*
 
 arith-expr  :	term ((PLUS|MINUS) term)*
 
 term        : factor ((MUL|DIV) factor)*
 
 factor      : (PLUS|MINUS) factor
-            : power
+            | power
 
 power       : call (POW factor)*
 
 call        : atom (LPAREN (expr (COMMA expr)*)? RPAREN)?
 
 atom        : INT|FLOAT|STRING|IDENTIFIER
-            : LPAREN expr RPAREN
-            : list-expr
-            : if-expr
-            : for-expr
-            : while-expr
-            : func-def
+            | LPAREN expr RPAREN
+            | list-expr
+            | if-expr
+            | for-expr
+            | while-expr
+            | func-def
 
 list-expr   : LSQUARE (expr (COMMA expr)*)? RSQUARE
 
-if-expr     : KEYWORD:IF expr KEYWORD:THEN
+parameters  : LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? RPAREN
+
+type        : IDENTIFIER
+
+if-expr     : 'when' expr 'then'
               (statement if-expr-b|if-expr-c?)
-            | (NEWLINE statements KEYWORD:END|if-expr-b|if-expr-c)
+            | (NEWLINE statements 'otherwise' if-expr-b|if-expr-c)
 
-if-expr-b   : KEYWORD:ELIF expr KEYWORD:THEN
+if-expr-b   : 'but when' expr 'then'
               (statement if-expr-b|if-expr-c?)
-            | (NEWLINE statements KEYWORD:END|if-expr-b|if-expr-c)
+            | (NEWLINE statements 'otherwise' if-expr-b|if-expr-c)
 
-if-expr-c   : KEYWORD:ELSE
+if-expr-c   : 'otherwise'
               statement
-            | (NEWLINE statements KEYWORD:END)
+            | (NEWLINE statements 'otherwise')
 
-for-expr    : KEYWORD:FOR IDENTIFIER EQ expr KEYWORD:TO expr 
-              (KEYWORD:STEP expr)? KEYWORD:THEN
+for-expr    : 'repeat' expr 'times' 'then'
               statement
-            | (NEWLINE statements KEYWORD:END)
+            | (NEWLINE statements 'otherwise')
 
-while-expr  : KEYWORD:WHILE expr KEYWORD:THEN
+while-expr  : 'iterate over' IDENTIFIER 'with' IDENTIFIER 'then'
               statement
-            | (NEWLINE statements KEYWORD:END)
+            | (NEWLINE statements 'otherwise')
 
-func-def    : KEYWORD:FUN IDENTIFIER?
-              LPAREN (IDENTIFIER (COMMA IDENTIFIER)*)? RPAREN
-              (ARROW expr)
-            | (NEWLINE statements KEYWORD:END)
+func-def    : 'task' IDENTIFIER?
+              parameters 'returns'? type?
+              statement
+            | (NEWLINE statements 'otherwise')
