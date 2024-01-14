@@ -187,12 +187,6 @@ explain{
 immutable budget: Currency = Currency(1000000, EUR)
 ```
 
-- **Exclamation Marks**: All statements in CarrotLang end with an exclamation mark for emphasis and clarity.
-
-```carrot
-print("Hello, CarrotLang")!
-```
-
 - **Immutable Data**: CarrotLang supports immutable data structures to ensure data integrity.
 
 ```carrot
