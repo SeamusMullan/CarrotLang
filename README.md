@@ -1,39 +1,39 @@
 # CarrotLang
 
+Welcome to CarrotLang, a modern and intuitive programming language designed for clarity, simplicity, and power. CarrotLang brings together the best features of conventional programming while introducing innovative concepts to enhance developer experience.
 
 ## Syntax Definitions
 
-0. **General Rules**
-- CarrotLang doesn't care about indentation, but evvery line of code must only do one thing (for simplicity)
-For example this is some valid CarrotLang code
+### 0. General Rules
+- CarrotLang does not enforce indentation, but each line of code must perform a single operation.
+
+**Valid CarrotLang code example:**
 ```carrot
 immutable people = ["john", "mary"]
 print(people[0])
 ```
-But this is not
+
+**Invalid CarrotLang code example:**
 ```carrot
 immutable people = ["john", "mary"] print(people[0])
 ```
 
-
-
-1. **Readable Declarations**: Use clear and descriptive keywords for variable declarations to make the code more readable. For instance:
-- `immutable` for constants that cannot change.
-- `mutable` for variables that can change.
-- `changeable` for variables that might change in compilation. If they don't change, they get made immutable. 
-- If no declaration is made, changeable is assumed
+### 1. Readable Declarations
+- `immutable` for unchangeable constants.
+- `mutable` for changeable variables.
+- `changeable` for variables that might become immutable during compilation.
 
 ```carrot
 immutable MAX_SCORE = 100
 mutable playerName = "Player1"
 changeable playerLevel = 20
-willWin = Yes note this uses changeable
+willWin = Yes  // Uses 'changeable' by default
 ```
 
-2. **Elegant Control Flow**: Instead of traditional `if-else` statements, use more natural language-like constructs.
-- `when` for conditions.
-- `but when` for else-if statements
-- `otherwise` for else statements.
+### 2. Elegant Control Flow
+- `when` for conditional checks.
+- `but when` for else-if scenarios.
+- `otherwise` for else conditions.
 
 ```carrot
 when score > 50 then
@@ -44,34 +44,33 @@ otherwise
 print("Try harder!")
 ```
 
-3. **Function Definitions**: Use `task` to define functions, making it clear that functions perform specific tasks.
+### 3. Function Definitions
+- Use `task` for defining functions.
+- `returns` keyword for specifying return types.
+
 ```carrot
 task calculateTotal(a, b) {
 return a + b
 }
-```
 
-Tasks can be forced to return a type by using `returns`
-```carrot
 task Multiply(a, b) returns Number {
 return a * b
 }
 ```
 
-4. **Array Indexing**: Start array indexing from 0
+### 4. Array Indexing
+- Arrays start at index 0.
+- Negative indexing supported for reverse access.
+
 ```carrot
 immutable numbers = [1, 2, 3]
-print(numbers[1])  note prints 2
+print(numbers[1])  // prints 2
+print(numbers[-2]) // prints 2
 ```
 
-Arrays can also be indexed backwards
-```carrot
-print(numbers[-2]) note prints 2
-```
-
-5. **Looping Constructs**: Simplify loops with readable keywords.
-- `repeat times` for a specific number of iterations.
-- `iterate over * with *` for iterating through collections.
+### 5. Looping Constructs
+- `repeat times` for fixed iterations.
+- `iterate over * with *` for collection traversal.
 
 ```carrot
 repeat 5 times {
@@ -87,80 +86,114 @@ print(data.name)
 }
 ```
 
-6. **Comments**: Use `note` for single-line comments and `explain` for block comments to make code documentation more conversational.
+### 6. Comments
+- `note` for single-line comments.
+- `explain` for multi-line comments.
+
 ```carrot
 note This is a single-line comment
 
 explain {
-This is a block comment
-explaining the following code block
+This block explains the following code
 }
 ```
 
-7. **Error Handling**: Use `attempt` and `rescue` for try-catch blocks, making them more understandable.
+### 7. Error Handling
+- `attempt` and `rescue` for try-catch blocks.
+- `always` for code that always executes regardless of errors.
+
 ```carrot
 attempt {
-note code that might throw an error
+// code that might throw an error
 } rescue (error) {
 print("An error occurred: " + error)
-}
-```
-
-Use `always` after an attempt-rescue block for code that should always run
-
-```
-attempt{
-note Risky code
-} rescue (error) {
-print(error)
 } always {
-note Do extra things here
+// Cleanup or finalization code
 }
 ```
 
-8. **Custom Operators**: Allow users to define their own operators for specific operations, enhancing readability and functionality.
+### 8. Custom Operators
+- Define custom operators for enhanced readability.
+
 ```carrot
 operator <+> (a, b) {
 return a.concat(b)
 }
 ```
 
-9. **Type Annotations**: Include optional type annotations for variables to help with clarity and debugging.
+### 9. Type Annotations
+- Optional type annotations for clarity.
 ```carrot
 mutable score: Number = 0
 immutable name: String = "CarrotCoder"
 ```
 
-All the possible types in CarrotLang are listed below
-- Number (Integers, Floats or Doubles)
-- Booleans (using `yes` or `no` caps-insensitive)
-- String (Character when length of 1)
-- Nothing (similar to Null)
-- Chance (represents a percentage chance)
-- Currency (can be converted to different currencies on the fly)
-- VectorN (N dimensional Vector)
-- GridN (N dimensional square matrix)
-- GridXY (X row, Y col dimensional matrix)
-- UID (Unique variable that cannot equal any other variable at runtime)
+### 10. Module System
+- `include` and `export` keywords for module management.
 
-10. **Module System**: Use `include` and `export` keywords for importing
+- **Single Module Import:**
 ```carrot
 include "mathModule"
 ```
 
-When importing multiple modules, you can use a list instead
-
+- **Multiple Module Import:**
 ```carrot
-immutable requirements = ["mathModule", "fancyModule" "dumbModule"]
+immutable requirements = ["mathModule", "fancyModule", "dumbModule"]
 include requirements
 ```
 
-To only include specific modules you can specifiy elements to exclude
+- **Selective Module Import:**
 ```carrot
 include requirements except requirements[2]
 ```
 
-You can also remove modules after they have been used using `forget about`
+- **Module Removal:**
 ```carrot
+forget about "mathModule"
 forget about requirements[1]
 ```
+
+---
+
+## Additional Features in CarrotLang
+
+- **Types**: CarrotLang supports a variety of types for different purposes:
+- `Number` (Integers, Floats, Doubles)
+- `Boolean` (`yes` or `no`, case-insensitive)
+- `String` (treated as `Char` when length is 1)
+- `Nothing` (similar to `Null`)
+- `Chance` (percentage probability)
+- `Currency` (with on-the-fly conversion)
+- `VectorN` (N-dimensional vector)
+- `GridN` (N-dimensional square matrix)
+- `GridXY` (X rows, Y columns matrix)
+- `UID` (Unique identifier)
+- `Date` (Date in DD/MM/YYYY format)
+- `GeoLocation` (using Lat, Lng)
+
+All types in CarrotLang can be created as instances
+```carrot
+note a 50% chance using the Chance type
+immutable prob: Chance = Chance(50)
+
+note the location of The Spire in Dublin using the GeoLocation type
+immutable theSpire: GeoLocation = GeoLocation(53.3498, 6.2603)
+```
+
+- **Exclamation Marks**: All statements in CarrotLang end with an exclamation mark for emphasis and clarity.
+
+```carrot
+print("Hello, CarrotLang")!
+```
+
+- **Immutable Data**: CarrotLang supports immutable data structures to ensure data integrity.
+
+```carrot
+immutable constantData = ["fixed", "values"]!
+```
+
+- **Open Source**: CarrotLang is an open-source project, welcoming contributions from the developer community worldwide.
+
+---
+
+For more information, examples, and resources, visit the [CarrotLang official repository](https://github.com/CarrotLang/CarrotLang).
